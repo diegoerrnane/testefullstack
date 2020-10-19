@@ -1,0 +1,79 @@
+<h2 class="text-center" *ngIf="!desabilitar">Criar conta</h2>
+<h2 class="text-center" *ngIf="desabilitar">Conta</h2>
+
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="form-group">
+        <label>Nome Completo</label>
+        <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="usuario.nome" required>
+    </div>
+    <div class="form-group">
+        <label>CPF</label>
+        <input class="form-control" type="text" name="cpf" id="cpf" maxlength="11" [(ngModel)]="usuario.cpf" [(readonly)]="desabilitar" required>
+    </div>
+    <div class="form-group">
+        <label>Data de Nascimento</label>
+        <input class="form-control" type="text" name="dataNasc" id="dataNasc" maxlength="8" [(ngModel)]="usuario.dataNasc" required>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-4">
+            <label>CEP</label>
+            <input class="form-control" type="text" name="cep" id="cep" maxlength="8" [(ngModel)]="usuario.cep" required>
+        </div>
+        <div class="col-md-2 margin-auto">
+            <button class="btn btn-primary btn-block" (click)="search()">Buscar</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Endereço</label>
+        <input class="form-control" type="text" name="logradouro" id="logradouro" [(ngModel)]="usuario.logradouro"
+               required>
+    </div>
+    <div class="form-group">
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label>Nº</label>
+                <input class="form-control" type="text" name="numero" id="numero" mask="11.11.11" [(ngModel)]="usuario.numero" required>
+            </div>
+            <div class="col-md-4">
+                <label>Complemento</label>
+                <input class="form-control" type="text" name="complemento" id="complemento"
+                       [(ngModel)]="usuario.complemento">
+            </div>
+            <div class="col-md-6">
+                <label>Bairro</label>
+                <input class="form-control" type="text" name="bairro" id="bairro" [(ngModel)]="usuario.bairro" required>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row form-group">
+            <div class="col-md-8">
+                <label>Cidade</label>
+                <input class="form-control" type="text" name="localidade" id="localidade" [(ngModel)]="usuario.cidade"
+                       required>
+            </div>
+            <div class="col-md-4">
+                <label>UF</label>
+                <input class="form-control" type="text" name="uf" id="uf" [(ngModel)]="usuario.uf" required>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>E-mail</label>
+        <input class="form-control" type="email" name="email" id="email" [(ngModel)]="usuario.email" required>
+    </div>
+    <div class="form-group">
+        <label>Celular</label>
+        <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="usuario.telefone" required>
+    </div>
+    <div class="form-group">
+        <label>Senha</label>
+        <input class="form-control" type="password" name="senha" id="senha" [(ngModel)]="usuario.senha"
+               required>
+    </div>
+    <button class="btn btn-primary btn-block" (click)="criarConta()" [disabled]="form.form.invalid" *ngIf="!desabilitar">Criar minha conta</button>
+    <button class="btn btn-link btn-block" [routerLink]="['/login']" *ngIf="!desabilitar">Voltar</button>
+    <button class="btn btn-primary btn-block" (click)="editar()" [disabled]="form.form.invalid" *ngIf="desabilitar">Salvar</button>
+    <button class="btn btn-link btn-block" [routerLink]="['/login']" *ngIf="desabilitar">Sair</button>
+</form>
+
